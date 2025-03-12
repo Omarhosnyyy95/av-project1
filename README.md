@@ -31,5 +31,13 @@ Finally, we calculate the total number of annotations, which provides a broader 
 
 Through this dataset analysis, we gain valuable insights that help in fine-tuning YOLOv11 for real-world urban object detection, ensuring a well-balanced, diverse, and high-quality training dataset.
 
+## **Dataset Preparation**  
 
+Dataset preparation is a crucial step in ensuring that the model receives properly formatted and pre-processed data for training and evaluation. In this project, we implement data pre-processing and augmentation techniques to enhance the quality of input images and improve model generalization.  
+
+We begin by defining a set of image transformations using `torchvision.transforms`, including resizing, normalization, and augmentation techniques. Images are resized to 640×640 pixels to match YOLOv11's expected input dimensions, normalized using standard ImageNet values, and subjected to random horizontal flipping, resized cropping, and color jittering. These augmentations help improve the model's ability to detect objects under different lighting conditions, perspectives, and occlusions.  
+
+A custom COCO dataset class is implemented using PyTorch’s `Dataset` module, which loads images and their corresponding annotations from the COCO dataset. The dataset retrieves bounding box annotations and category labels, converting the bounding boxes from `[x, y, width, height]` format to `[x1, y1, x2, y2]` format, which is required for object detection models. The processed dataset is then wrapped in PyTorch DataLoaders, allowing for efficient batch loading during training and validation.  
+
+By applying this pre-processing pipeline, the dataset is optimized for YOLOv8 training, ensuring that the model receives high-quality, well-augmented, and structured input data, ultimately improving detection performance in real-world urban environments.
 Feel free to add or edit or delete
